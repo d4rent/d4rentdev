@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - D4Rent</title>
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Logo">
+      </a>
+    </div>
+    <div class="nav-login-container">
+      <nav>
+        <ul>
+           <li><a href="buy.html">Buy</a></li>
+           <li><a href="rent.html">Rent</a></li>
+           <li><a href="commercial.html">Commercial</a></li>
+           <li><a href="services.html">Services</a></li>
+           <li class="dropdown">
+            <a href="agents.html">Agents</a>
+            <ul class="dropdown-menu">
+              <li><a href="agents.html">Real Estate Agents</a></li>
+            </ul>
+          </li>
+          <li><a href="concierge.html">Concierge</a></li>
+          <li><a href="sell.html">Why Us?</a></li>
+          <li><a href="contact-us.html" class="contact-button">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="login-button">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg" alt="User Profile">
+      </a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="hero">
+    <div class="profile-container" id="profile-details">
+      <!-- Profile info will be injected here -->
+    </div>
+    
+    <div class="profile-actions">
+      <button id="edit-profile-btn" class="profile-action-btn">Edit Profile</button>
+      <button id="show-property-upload-btn" class="profile-action-btn">Add Property</button>
+      <button id="show-properties-btn" class="profile-action-btn">Your Properties</button>
+      <button id="show-ad-upload-btn" class="profile-action-btn">Add Advert</button>
+      <button id="show-advertisements-btn" class="profile-action-btn">Your Adverts</button>
+      <button id="show-service-upload-btn" class="profile-action-btn">Add Service</button>
+      <button id="show-services-btn" class="profile-action-btn">Your Services</button>
+      <button id="logout-btn" class="profile-action-btn">Logout</button>
+    </div>
+
+    <!-- Property Upload Form (hidden by default) -->
+    <div id="property-upload-section" class="hidden profile-form-section">
+      <h2>Upload a Property</h2>
+      <form id="property-upload-form" enctype="multipart/form-data">
+        <label>Title: <input type="text" name="title" required></label>
+        <label>Description: <textarea name="description" required></textarea></label>
+        <label>Address: <input type="text" name="address" required></label>
+        <label>Property Type:
+          <select name="property_type" required>
+            <option value="Residential Real Estate">Residential Real Estate</option>
+            <option value="Commercial Real Estate">Commercial Real Estate</option>
+            <option value="New Home Real Estate">New Home Real Estate</option>
+            <option value="Luxury Home Real Estate">Luxury Home Real Estate</option>
+            <option value="Development Sites Real Estate">Development Sites Real Estate</option>
+          </select>
+        </label>
+        <label>Status:
+          <select name="status" required>
+            <option value="for sale">For Sale</option>
+            <option value="sale agreed">Sale Agreed</option>
+            <option value="sold">Sold</option>
+            <option value="to let">To Let</option>
+            <option value="letting agreed">Letting Agreed</option>
+          </select>
+        </label>
+        <label>Price: <input type="number" name="price" step="0.01" required></label>
+        <label>Property Size: <input type="text" name="property_size"></label>
+        <label>Beds: <input type="number" name="beds"></label>
+        <label>Agency Name: <input type="text" name="agency_name"></label>
+        <label>Property Image: <input type="file" name="image" accept="image/*" required></label>
+        <label>Company Logo: <input type="file" name="company_logo" accept="image/*"></label>
+        <label>Photos (multiple): <input type="file" name="photos" accept="image/*" multiple></label>
+        <button type="submit">Upload Property</button>
+      </form>
+    </div>
+
+    <!-- Ad Listing Upload Form (hidden by default) -->
+    <div id="ad-upload-section" class="hidden profile-form-section">
+      <h2>Upload an Ad Listing</h2>
+      <form id="ad-upload-form" enctype="multipart/form-data">
+        <label>Title: <input type="text" name="title" required></label>
+        <label>Photo: <input type="file" name="photo" accept="image/*" required></label>
+        <label>Address: <input type="text" name="address"></label>
+        <label>Phone Number: <input type="text" name="phone_number"></label>
+        <label>Email: <input type="email" name="email"></label>
+        <label>Website Link: <input type="url" name="link"></label>
+        <button type="submit">Upload Advertisement</button>
+      </form>
+    </div>
+
+    <!-- Edit Profile Section (hidden by default) -->
+    <div id="edit-profile-section" class="hidden profile-form-section">
+      <h2>Edit Profile</h2>
+      <form id="edit-profile-form" enctype="multipart/form-data">
+        <label>Full Name: <input type="text" id="edit-full_name" name="full_name"></label>
+        <label>Phone Number: <input type="text" id="edit-phone_number" name="phone_number"></label>
+        <label>Email: <input type="email" id="edit-email" name="email" required></label>
+        <label>Photo: <input type="file" id="edit-profile_picture" name="profile_picture" accept="image/*"></label>
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+    <!-- User Listings Section (hidden by default) -->
+    <div id="user-listings-section" class="hidden profile-listings-section">
+      <h2>Your Properties</h2>
+      <div id="user-listings-grid" class="profile-card-grid">
+        <!-- Listings will be injected here by JS -->
+      </div>
+    </div>
+
+    <!-- User Advertisements Section (hidden by default) -->
+    <div id="user-advertisements-section" class="hidden profile-listings-section">
+      <h2>Your Advertisements</h2>
+      <div id="user-advertisements-grid" class="profile-card-grid">
+        <!-- Ads will be injected here by JS -->
+      </div>
+    </div>
+
+    <!-- Service Contract Section (hidden by default) -->
+    <div id="service-contract-section" class="hidden profile-form-section">
+      <h2>Service Provider Contract</h2>
+      <div class="contract-text" style="max-height:200px;overflow:auto;border:1px solid #ccc;padding:1em;margin-bottom:1em;">
+        <p>
+          By uploading a service, you agree to abide by the D4Rent Service Agreement, which states the agreed Discount Code be used and displayed on the site, and that we have the right to take down any service or advertisement if deemed unfit.  Please read the terms carefully.
+          <!-- ...full contract text here... -->
+        </p>
+      </div>
+      <label>
+        <input type="checkbox" id="agree-contract-checkbox" />
+        I have read and agree to the Service Provider Contract.
+      </label>
+      <br>
+      <button id="continue-to-service-upload" disabled>Continue to Service Upload</button>
+    </div>
+
+    <!-- Service Upload Form (hidden by default) -->
+    <div id="service-upload-section" class="hidden profile-form-section">
+      <h2>Upload a Service</h2>
+      <form id="service-upload-form" enctype="multipart/form-data">
+        <label>Title: <input type="text" name="title" required></label>
+        <label>Photo: <input type="file" name="photo" accept="image/*" required></label>
+        <label>Address: <input type="text" name="address"></label>
+        <label>Phone Number: <input type="text" name="phone_number"></label>
+        <label>Email: <input type="email" name="email"></label>
+        <label>Website Link: <input type="url" name="link"></label>
+        <label for="bio">Bio/Description:</label>
+        <textarea id="bio" name="bio" rows="3" placeholder="Short description or bio"></textarea>
+        <label>Discount Code: <input type="text" name="discount_code" placeholder="e.g. SAVE15"></label>
+        <label>Discount Percent: <input type="number" name="discount_percent" min="1" max="100" placeholder="e.g. 15"></label>
+        <button type="submit">Upload Service</button>
+      </form>
+    </div>
+
+    <!-- User Services Section (hidden by default) -->
+    <div id="user-services-section" class="hidden profile-listings-section">
+      <h2>Your Services</h2>
+      <div id="user-services-grid" class="profile-card-grid">
+        <!-- Services will be injected here by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="edit-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeEditModal()">&times;</span>
+      <h3 id="edit-modal-title">Edit</h3>
+      <form id="edit-generic-form">
+        <!-- Dynamic fields will be injected here -->
+        <div id="edit-form-fields"></div>
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-image">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Footer Logo">
+      </div>
+      <div class="footer-section">
+        <h3>Contact Details</h3>
+        <p>D4RENT.IE</p>
+        <p>36 Upper Baggot St, Ballsbridge, D4</p>
+        <p>Phone: 01 442 7303</p>
+        <p>087 169 9498</p>
+        <p>Email: <a href="mailto:info@d4rent.ie">info@d4rent.ie</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policy Links</h3>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="psra-number">PSRA No 003328</div>
+  </footer>
+
+   <script>
+  const API_BASE_URL = 'http://d4rent-env.eba-nyk56kew.eu-west-1.elasticbeanstalk.com';
+  
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = 'login.html';
+  } else {
+    // Fetch and display user profile
+    fetch(`${API_BASE_URL}/api/auth/profile`, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    })
+    .then(res => res.json())
+    .then(user => {
+      if (user.error || user.message) {
+        document.getElementById('profile-details').innerHTML = user.error || user.message;
+      } else {
+        document.getElementById('profile-details').innerHTML = `
+          <img src="${user.profile_picture || 'https://via.placeholder.com/120?text=Photo'}" alt="Profile Photo" class="profile-picture">
+          <div class="profile-fullname">${user.full_name}</div>
+          <div class="profile-phone">${user.phone_number ? '📞 ' + user.phone_number : ''}</div>
+          <div class="profile-email">${user.email ? '✉️ ' + user.email : ''}</div>
+        `;
+        document.getElementById('edit-full_name').value = user.full_name || '';
+        document.getElementById('edit-phone_number').value = user.phone_number || '';
+        document.getElementById('edit-email').value = user.email || '';
+      }
+    });
+  }
+  
+  // Handle Edit Profile Form Submission
+  document.getElementById('edit-profile-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/auth/profile`, {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: formData
+    });
+    const data = await res.json();
+    if (res.ok && !data.error) {
+      alert('Profile updated!');
+      if (data.profile_picture) {
+        document.querySelector('.profile-picture').src = data.profile_picture;
+      }
+      document.getElementById('profile-details').innerHTML = `
+        <img src="${data.profile_picture || 'https://via.placeholder.com/120?text=Photo'}" alt="Profile Photo" class="profile-picture">
+        <div class="profile-fullname">${data.full_name}</div>
+        <div class="profile-phone">${data.phone_number ? '📞 ' + data.phone_number : ''}</div>
+        <div class="profile-email">${data.email ? '✉️ ' + data.email : ''}</div>
+      `;
+      showSection('profile-details');
+    } else {
+      alert('Failed to update profile: ' + (data.error || 'Unknown error'));
+    }
+  };
+  
+  // Section toggling logic
+  function showSection(sectionId) {
+    const sections = [
+      'edit-profile-section',
+      'property-upload-section',
+      'ad-upload-section',
+      'user-listings-section',
+      'user-advertisements-section',
+      'service-upload-section',
+      'user-services-section',
+      'service-contract-section'
+    ];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    });
+    const showEl = document.getElementById(sectionId);
+    if (showEl) showEl.classList.remove('hidden');
+  }
+  
+  document.getElementById('edit-profile-btn').onclick = () => showSection('edit-profile-section');
+  document.getElementById('show-property-upload-btn').onclick = () => showSection('property-upload-section');
+  document.getElementById('show-ad-upload-btn').onclick = () => {
+    window.location.href = 'purchase.html?next=ad';
+  };
+  document.getElementById('show-service-upload-btn').onclick = () => {
+    showSection('service-contract-section');
+  };
+  document.getElementById('show-properties-btn').onclick = () => {
+    showSection('user-listings-section');
+    fetchUserProperties();
+  };
+  document.getElementById('show-advertisements-btn').onclick = () => {
+    showSection('user-advertisements-section');
+    fetchUserAdvertisements();
+  };
+  document.getElementById('show-services-btn').onclick = () => {
+    showSection('user-services-section');
+    fetchUserServices();
+  };
+  document.getElementById('logout-btn').onclick = () => {
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  };
+  
+  // Contract agreement logic
+  const agreeCheckbox = document.getElementById('agree-contract-checkbox');
+  const continueBtn = document.getElementById('continue-to-service-upload');
+  if (agreeCheckbox && continueBtn) {
+    agreeCheckbox.onchange = function() {
+      continueBtn.disabled = !this.checked;
+    };
+    continueBtn.onclick = function() {
+      showSection('service-upload-section');
+    };
+  }
+  
+  // Show correct section if redirected from purchase or with hash
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('show') === 'ad-upload') {
+    showSection('ad-upload-section');
+  }
+  if (window.location.hash === '#ad-upload-section') {
+    showSection('ad-upload-section');
+  }
+  if (window.location.hash === '#service-upload-section') {
+    showSection('service-upload-section');
+  }
+  
+  // Handle Ad Listing Upload Form Submission
+  document.getElementById('ad-upload-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    formData.append('package', 'free');
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/advertisements`, {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert('Advertisement uploaded successfully!');
+      fetchUserAdvertisements();
+      showSection('user-advertisements-section');
+    } else {
+      alert('Failed to upload advertisement: ' + (data.error || 'Unknown error'));
+    }
+  };
+  
+  // Handle Property Upload Form Submission
+  document.getElementById('property-upload-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/properties`, {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert('Property uploaded successfully!');
+      fetchUserProperties();
+      showSection('user-listings-section');
+    } else {
+      alert('Failed to upload property: ' + (data.error || 'Unknown error'));
+    }
+  };
+  
+  // Handle Service Upload Form Submission
+  document.getElementById('service-upload-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/services`, {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token },
+      body: formData
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert('Service uploaded successfully!');
+      fetchUserServices();
+      showSection('user-services-section');
+    } else {
+      alert('Failed to upload service: ' + (data.error || 'Unknown error'));
+    }
+  };
+  
+  // Fetch and render user's advertisements
+  async function fetchUserAdvertisements() {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/advertisements/user`, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const ads = await res.json();
+    const grid = document.getElementById('user-advertisements-grid');
+    grid.innerHTML = '';
+    if (!Array.isArray(ads) || ads.length === 0) {
+      grid.innerHTML = '<p>No advertisements found.</p>';
+      return;
+    }
+    ads.forEach(ad => {
+      const adDiv = document.createElement('div');
+      adDiv.className = 'profile-card';
+      adDiv.innerHTML = `
+        <img class="profile-card-img" src="${ad.photo ? '/uploads/' + ad.photo : 'https://via.placeholder.com/120?text=No+Photo'}" alt="${ad.title}">
+        <div class="profile-card-content">
+          <div class="profile-card-title">${ad.title || ''}</div>
+          <div class="profile-card-detail">${ad.address || ''}</div>
+          <div class="profile-card-detail">${ad.phone_number || ''}</div>
+          <div class="profile-card-detail">${ad.email || ''}</div>
+          ${ad.link ? `<a class="profile-card-link" href="${ad.link}" target="_blank">${ad.link}</a>` : ''}
+        </div>
+        <div class="profile-card-actions">
+          <button class="profile-card-btn edit" onclick="editAd('${ad.id}')">Edit</button>
+          <button class="profile-card-btn delete" onclick="deleteAd('${ad.id}')">Delete</button>
+        </div>
+      `;
+      grid.appendChild(adDiv);
+    });
+  }
+  
+  // Fetch and render user's properties
+  async function fetchUserProperties() {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/properties/user`, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const properties = await res.json();
+    const grid = document.getElementById('user-listings-grid');
+    grid.innerHTML = '';
+    if (!Array.isArray(properties) || properties.length === 0) {
+      grid.innerHTML = '<p>No properties found.</p>';
+      return;
+    }
+    properties.forEach(property => {
+      const propDiv = document.createElement('div');
+      propDiv.className = 'profile-card';
+      propDiv.innerHTML = `
+        <img class="profile-card-img" src="${property.image ? '/uploads/' + property.image : 'https://via.placeholder.com/120?text=No+Photo'}" alt="${property.title}">
+        <div class="profile-card-content">
+          <div class="profile-card-title">${property.title || ''}</div>
+          <div class="profile-card-detail">${property.address || ''}</div>
+          <div class="profile-card-detail">${property.price ? '€' + property.price : ''}</div>
+          <div class="profile-card-detail">${property.status || ''}</div>
+        </div>
+        <div class="profile-card-actions">
+          <button class="profile-card-btn edit" onclick="editProperty('${property.id}')">Edit</button>
+          <button class="profile-card-btn delete" onclick="deleteProperty('${property.id}')">Delete</button>
+        </div>
+      `;
+      grid.appendChild(propDiv);
+    });
+  }
+  
+  // Fetch and render user's services
+  async function fetchUserServices() {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${API_BASE_URL}/api/services/user`, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    const services = await res.json();
+    const grid = document.getElementById('user-services-grid');
+    grid.innerHTML = '';
+    if (!Array.isArray(services) || services.length === 0) {
+      grid.innerHTML = '<p>No services found.</p>';
+      return;
+    }
+    services.forEach(service => {
+      const serviceDiv = document.createElement('div');
+      serviceDiv.className = 'profile-card';
+      serviceDiv.innerHTML = `
+        <img class="profile-card-img" src="${service.photo ? '/uploads/' + service.photo : 'https://via.placeholder.com/120?text=No+Photo'}" alt="${service.title}">
+        <div class="profile-card-content">
+          <div class="profile-card-title">${service.title || ''}</div>
+          <div class="profile-card-detail">${service.address || ''}</div>
+          <div class="profile-card-detail">${service.phone_number || ''}</div>
+          <div class="profile-card-detail">${service.email || ''}</div>
+          ${service.link ? `<a class="profile-card-link" href="${service.link}" target="_blank">${service.link}</a>` : ''}
+          ${(service.discount_code || service.discount_percent) ? `<div class="profile-card-discount">${service.discount_code ? 'Discount: ' + service.discount_code : ''} ${service.discount_percent ? '(' + service.discount_percent + '%)' : ''}</div>` : ''}
+        </div>
+        <div class="profile-card-actions">
+          <button class="profile-card-btn edit" onclick="editService('${service.id}')">Edit</button>
+          <button class="profile-card-btn delete" onclick="deleteService('${service.id}')">Delete</button>
+        </div>
+      `;
+      grid.appendChild(serviceDiv);
+    });
+  }
+  
+  // Generic Edit Modal Logic (excludes user fields and created_at)
+  function showEditModal(type, id) {
+    let endpoint = '';
+    let title = '';
+    if (type === 'property') {
+      endpoint = `${API_BASE_URL}/api/properties/${id}`;
+      title = 'Edit Property';
+    } else if (type === 'ad') {
+      endpoint = `${API_BASE_URL}/api/advertisements/${id}`;
+      title = 'Edit Advertisement';
+    } else if (type === 'service') {
+      endpoint = `${API_BASE_URL}/api/services/${id}`;
+      title = 'Edit Service';
+    }
+  
+    fetch(endpoint, {
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+    })
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('edit-modal-title').textContent = title;
+      // Exclude user fields and created_at
+      const fieldsHtml = Object.keys(data).filter(key =>
+        key !== 'id' &&
+        key !== 'photo' &&
+        key !== 'image' &&
+        key !== 'company_logo' &&
+        key !== 'photos' &&
+        key !== 'user' &&
+        key !== 'user_id' &&
+        key !== 'user_email' &&
+        key !== 'user_full_name' &&
+        key !== 'created_at'
+      ).map(key => {
+        let inputType = 'text';
+        if (typeof data[key] === 'number') inputType = 'number';
+        if (key === 'email') inputType = 'email';
+        if (key === 'link' || key === 'website' || key === 'website_link') inputType = 'url';
+        if (key === 'description' || key === 'bio') {
+          return `
+            <label>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:
+              <textarea name="${key}" rows="3">${data[key] || ''}</textarea>
+            </label>
+          `;
+        }
+        if (key === 'status') {
+          return `
+            <label>Status:
+              <select name="status">
+                <option value="for sale" ${data[key]==='for sale'?'selected':''}>For Sale</option>
+                <option value="sale agreed" ${data[key]==='sale agreed'?'selected':''}>Sale Agreed</option>
+                <option value="sold" ${data[key]==='sold'?'selected':''}>Sold</option>
+                <option value="to let" ${data[key]==='to let'?'selected':''}>To Let</option>
+                <option value="letting agreed" ${data[key]==='letting agreed'?'selected':''}>Letting Agreed</option>
+              </select>
+            </label>
+          `;
+        }
+        if (key === 'property_type') {
+          return `
+            <label>Property Type:
+              <select name="property_type">
+                <option value="Residential Real Estate" ${data[key]==='Residential Real Estate'?'selected':''}>Residential Real Estate</option>
+                <option value="Commercial Real Estate" ${data[key]==='Commercial Real Estate'?'selected':''}>Commercial Real Estate</option>
+                <option value="New Home Real Estate" ${data[key]==='New Home Real Estate'?'selected':''}>New Home Real Estate</option>
+                <option value="Luxury Home Real Estate" ${data[key]==='Luxury Home Real Estate'?'selected':''}>Luxury Home Real Estate</option>
+                <option value="Development Sites Real Estate" ${data[key]==='Development Sites Real Estate'?'selected':''}>Development Sites Real Estate</option>
+              </select>
+            </label>
+          `;
+        }
+        return `
+          <label>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:
+            <input type="${inputType}" name="${key}" value="${data[key] !== null && data[key] !== undefined ? data[key] : ''}">
+          </label>
+        `;
+      }).join('');
+      document.getElementById('edit-form-fields').innerHTML = `
+        <input type="hidden" name="id" value="${id}">
+        ${fieldsHtml}
+      `;
+      document.getElementById('edit-generic-form').onsubmit = async function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const obj = {};
+        for (const [key, value] of formData.entries()) obj[key] = value;
+        const res = await fetch(endpoint, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(obj)
+        });
+        if (res.ok) {
+          alert('Updated!');
+          closeEditModal();
+          if (type === 'property') fetchUserProperties();
+          if (type === 'ad') fetchUserAdvertisements();
+          if (type === 'service') fetchUserServices();
+        } else {
+          alert('Failed to update.');
+        }
+      };
+      document.getElementById('edit-modal').classList.remove('hidden');
+    });
+  }
+  function closeEditModal() {
+    document.getElementById('edit-modal').classList.add('hidden');
+  }
+  
+  function editProperty(id) { showEditModal('property', id); }
+  function editAd(id) { showEditModal('ad', id); }
+  function editService(id) { showEditModal('service', id); }
+  
+  // Delete Property
+  async function deleteProperty(id) {
+    if (!confirm('Are you sure you want to delete this property?')) return;
+    const res = await fetch(`${API_BASE_URL}/api/properties/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+    });
+    if (res.ok) {
+      alert('Property deleted!');
+      fetchUserProperties();
+    } else {
+      alert('Failed to delete property.');
+    }
+  }
+  async function deleteAd(id) {
+    if (!confirm('Are you sure you want to delete this advertisement?')) return;
+    const res = await fetch(`${API_BASE_URL}/api/advertisements/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+    });
+    if (res.ok) {
+      alert('Advertisement deleted!');
+      fetchUserAdvertisements();
+    } else {
+      alert('Failed to delete advertisement.');
+    }
+  }
+  
+  async function deleteService(id) {
+    if (!confirm('Are you sure you want to delete this service?')) return;
+    const res = await fetch(`${API_BASE_URL}/api/services/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+    });
+    if (res.ok) {
+      alert('Service deleted!');
+      fetchUserServices();
+    } else {
+      alert('Failed to delete service.');
+    }
+  }
+  </script>
+</body>
+</html>

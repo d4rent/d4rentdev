@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D4Rent Concierge</title>
+  <link rel="stylesheet" href="../css/concierge.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Logo">
+      </a>
+    </div>
+    <div class="nav-login-container">
+      <nav>
+       <ul>
+           <li><a href="buy.html">Buy</a></li>
+           <li><a href="rent.html">Rent</a></li>
+           <li><a href="commercial.html">Commercial</a></li>
+           <li><a href="services.html">Services</a></li>
+           <li class="dropdown">
+            <a href="agents.html">Agents</a>
+            <ul class="dropdown-menu">
+              <li><a href="agents.html">Real Estate Agents</a></li>
+            </ul>
+          </li>
+          <li><a href="concierge.html">Concierge</a></li>
+          <li><a href="sell.html">Why Us?</a></li>
+          <li><a href="contact-us.html" class="contact-button">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="login-button">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg" alt="User Profile">
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <h1 style="text-align:center;margin-top:32px;">Concierge Board</h1>
+    <div class="concierge-board" id="concierge-board">
+      <!-- Advertisement rectangles will be injected here by JS -->
+    </div>
+    <section class="they-do-care-section" style="text-align:center; margin: 48px 0 24px 0;">
+      <p style="font-size:13px; color:#444;">
+        To get in touch with us about renting a space on the concierge board, please contact info@d4rent.ie
+      </p>
+      <h2 style="font-size:2rem; color:#cf3b01; margin-bottom:16px;">theydocare.com</h2>
+      <p style="font-size:8px; color:#444;">a percentage of all money made from the concierge board is donated to charity</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-image">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Footer Logo">
+      </div>
+      <div class="footer-section">
+        <h3>Contact Details</h3>
+        <p>D4RENT.IE</p>
+        <p>36 Upper Baggot St, Ballsbridge, D4</p>
+        <p>Phone: 01 442 7303</p>
+        <p>087 169 9498</p>
+        <p>Email: <a href="mailto:info@d4rent.ie">info@d4rent.ie</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policy Links</h3>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="psra-number">PSRA No 003328</div>
+  </footer>
+
+  <script>
+    // Only declare API_BASE_URL if not already defined
+    if (typeof API_BASE_URL === 'undefined') {
+      var API_BASE_URL = 'http://d4rent-env.eba-nyk56kew.eu-west-1.elasticbeanstalk.com';
+    }
+
+    // Fetch and render advertisements
+    async function loadConciergeAds() {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/advertisements`);
+        const ads = await res.json();
+        const board = document.getElementById('concierge-board');
+        if (!board) return;
+        board.innerHTML = '';
+        if (!Array.isArray(ads) || ads.length === 0) {
+          board.innerHTML = '<p>No advertisements available at this time.</p>';
+          return;
+        }
+        ads.forEach(ad => {
+          const rect = document.createElement('a');
+          rect.className = 'concierge-ad-rect';
+          rect.href = ad.link || '#';
+          rect.target = '_blank';
+          rect.innerHTML = `
+            ${ad.photo ? `<img class="ad-bg-img" src="${ad.photo}" alt="${ad.title}">` : ''}
+            <div class="ad-overlay">
+              <div class="ad-title">${ad.title || ''}</div>
+              <div class="ad-address">${ad.address || ''}</div>
+              <div class="ad-email">${ad.email || ''}</div>
+              ${ad.link ? `<span class="ad-link">Visit Website</span>` : ''}
+            </div>
+          `;
+          board.appendChild(rect);
+        });
+      } catch (err) {
+        const board = document.getElementById('concierge-board');
+        if (board) board.innerHTML = '<p>Could not load advertisements.</p>';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadConciergeAds);
+  </script>
+  <script src="../scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details</title>
+  <link rel="stylesheet" href="../css/propertypagetemplate.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Logo">
+      </a>
+    </div>
+    <div class="nav-login-container">
+      <nav>
+        <ul>
+           <li><a href="buy.html">Buy</a></li>
+           <li><a href="rent.html">Rent</a></li>
+           <li><a href="commercial.html">Commercial</a></li>
+           <li><a href="services.html">Services</a></li>
+           <li class="dropdown">
+            <a href="agents.html">Agents</a>
+            <ul class="dropdown-menu">
+              <li><a href="agents.html">Real Estate Agents</a></li>
+            </ul>
+          </li>
+          <li><a href="concierge.html">Concierge</a></li>
+          <li><a href="sell.html">Why Us?</a></li>
+          <li><a href="contact-us.html" class="contact-button">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="login-button">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg" alt="User Profile">
+      </a>
+    </div>
+  </header>
+
+  <!-- Property Details Section -->
+  <section class="property-details">
+    <div class="property-gallery">
+      <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/sold rent.png" alt="Main Property Image" class="main-image">
+      <div class="thumbnail-gallery">
+        <!-- Thumbnails will be injected here -->
+      </div>
+    </div>
+
+    <div class="property-info">
+      <h1 class="title">Loading...</h1>
+      <p class="address"></p>
+      <p class="agency"></p>
+      <p class="type"></p>
+      <p class="status"></p>
+      <p class="price"></p>
+      <p class="size"></p>
+      <p class="beds"></p>
+      <p class="description"></p>
+      <ul class="key-features"></ul>
+      <button class="contact-agent">Contact Agent</button>
+    </div>
+  </section>
+
+  <!-- Full-Screen Slideshow -->
+  <div id="slideshow" class="slideshow" style="display:none;">
+    <span class="close-slideshow" onclick="closeSlideshow()">&times;</span>
+    <div class="slideshow-content">
+      <img id="slideshow-image" src="" alt="Slideshow Image">
+      <div class="slideshow-controls">
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent Section -->
+  <div class="agent-section-container">
+    <button class="toggle-agent-button" onclick="toggleAgentSection()">View Agent Details</button>
+    <div class="agent-section" id="agent-section" style="display:none;">
+      <img class="agent-avatar" id="agent-avatar" src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/default-user.png" alt="Agent Photo">
+      <div class="agent-details">
+        <div class="agent-name" id="agent-name"></div>
+        <div class="agent-email" id="agent-email"></div>
+        <div class="agent-phone" id="agent-phone"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-image">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Footer Logo">
+      </div>
+      <div class="footer-section">
+        <h3>Contact Details</h3>
+        <p>D4RENT.IE</p>
+        <p>36 Upper Baggot St, Ballsbridge, D4</p>
+        <p>Phone: 01 442 7303, 087 169 9498</p>
+        <p>Email: <a href="mailto:info@d4rent.ie">info@d4rent.ie</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policy Links</h3>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="psra-number">PSRA No 003328</div>
+  </footer>
+
+  <script>
+    // Utility to get query param
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    // Add API_BASE_URL constant
+    const API_BASE_URL = 'http://d4rent-env.eba-nyk56kew.eu-west-1.elasticbeanstalk.com';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const propertyId = getQueryParam('id');
+      if (!propertyId) return;
+
+      // Fetch property details from your backend using API_BASE_URL
+      const res = await fetch(`${API_BASE_URL}/api/properties/${propertyId}`);
+      if (!res.ok) return;
+      const property = await res.json();
+
+      // Main photo (use 'photo' or 'image' field)
+      const mainImage = document.querySelector('.property-gallery .main-image');
+      if (property.photo) {
+        mainImage.src = '/uploads/' + property.photo;
+        mainImage.alt = property.title || 'Property Image';
+      } else if (property.image) {
+        mainImage.src = '/uploads/' + property.image;
+        mainImage.alt = property.title || 'Property Image';
+      } else {
+        mainImage.src = 'https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/sold rent.png';
+        mainImage.alt = 'Property Image';
+      }
+
+      // More photos (thumbnails)
+      const gallery = document.querySelector('.thumbnail-gallery');
+      if (property.photos && Array.isArray(property.photos) && property.photos.length) {
+        gallery.innerHTML = property.photos.map(photo =>
+          `<img src="/uploads/${photo}" alt="Thumbnail" onclick="openSlideshow(${JSON.stringify(property.photos)}, ${property.photos.indexOf(photo)})">`
+        ).join('');
+      } else {
+        gallery.innerHTML = '';
+      }
+
+      // Info fields
+      document.querySelector('.property-info .title').textContent = property.title || '';
+      document.querySelector('.property-info .address').textContent = property.address ? `Address: ${property.address}` : '';
+      document.querySelector('.property-info .agency').textContent = property.agency_name ? `Agency: ${property.agency_name}` : '';
+      document.querySelector('.property-info .type').textContent = property.property_type ? `Type: ${property.property_type}` : '';
+      document.querySelector('.property-info .status').textContent = property.status ? `Status: ${property.status}` : '';
+      document.querySelector('.property-info .price').textContent = property.price ? `Price: €${property.price}` : '';
+      document.querySelector('.property-info .size').textContent = property.property_size ? `Size: ${property.property_size} m²` : '';
+      document.querySelector('.property-info .beds').textContent = property.beds ? `Beds: ${property.beds}` : '';
+      document.querySelector('.property-info .description').textContent = property.description || '';
+
+      // Key features (add more as needed)
+      const features = [];
+      if (property.bathrooms) features.push(`${property.bathrooms} Bathrooms`);
+      if (property.balcony) features.push('Balcony');
+      if (property.kitchen) features.push('Modern Kitchen');
+      if (property.energy_efficient) features.push('Energy Efficient');
+      document.querySelector('.property-info .key-features').innerHTML =
+        features.map(f => `<li>${f}</li>`).join('');
+
+        // Agent Section - Updated to use fetched user data
+      if (property.user_name || property.user_photo || property.user_email || property.user_phone) {
+        // Show the toggle button and populate agent data
+        document.querySelector('.agent-section-container').style.display = 'block';
+        
+        document.getElementById('agent-name').textContent = property.user_name || 'Unknown Agent';
+        document.getElementById('agent-email').textContent = property.user_email || 'No email available';
+        document.getElementById('agent-phone').textContent = property.user_phone || 'No phone available';
+        document.getElementById('agent-avatar').src = property.user_profile_picture
+          ? '/uploads/' + property.user_profile_picture
+          : 'https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg'; // Use existing image instead of missing default-user.png
+      } else {
+        // Hide the entire agent section if no user data
+        document.querySelector('.agent-section-container').style.display = 'none';
+      }
+    });
+
+    // Slideshow logic
+    let currentSlide = 0;
+    function openSlideshow(images, startIdx = 0) {
+      currentSlide = startIdx;
+      window.slideshowImages = images;
+      document.getElementById('slideshow').style.display = 'flex';
+      showSlide(currentSlide);
+    }
+    function closeSlideshow() {
+      document.getElementById('slideshow').style.display = 'none';
+    }
+    function changeSlide(n) {
+      if (!window.slideshowImages) return;
+      currentSlide += n;
+      if (currentSlide < 0) currentSlide = window.slideshowImages.length - 1;
+      if (currentSlide >= window.slideshowImages.length) currentSlide = 0;
+      showSlide(currentSlide);
+    }
+    function showSlide(idx) {
+      if (!window.slideshowImages) return;
+      document.getElementById('slideshow-image').src = window.slideshowImages[idx];
+    }
+
+    function toggleAgentSection() {
+      const agentSection = document.getElementById('agent-section');
+      const toggleButton = document.querySelector('.toggle-agent-button');
+
+      if (agentSection.style.display === 'none' || agentSection.style.display === '') {
+        agentSection.style.display = 'flex';
+        toggleButton.textContent = 'Hide Agent Details';
+      } else {
+        agentSection.style.display = 'none';
+        toggleButton.textContent = 'View Agent Details';
+      }
+    }
+  </script>
+
+  <script src="../scripts/main.js"></script>
+</body>
+</html>

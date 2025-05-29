@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details</title>
+  <link rel="stylesheet" href="../css/propertypagetemplate.css">
+</head>
+<body>
+
+   <!-- Header -->
+   <header>
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Logo">
+      </a>
+    </div>
+    <div class="nav-login-container">
+      <nav>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="let.html">Let</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+          <li class="dropdown">
+            <a href="agents.html">Agents</a>
+            <ul class="dropdown-menu">
+                <li><a href="agents.html">Real Estate Agents</a></li>
+                <li><a href="agents.html">Mortgages</a></li>
+                <li><a href="agents.html">Valuations</a></li>
+                <li><a href="agents.html">Home Improvement</a></li>
+                <li><a href="agents.html">Other</a></li>
+            </ul>
+          </li>
+          <li><a href="concierge.html">Concierge</a></li>
+          <li><a href="contact-us.html" class="contact-button">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="login-button">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg" alt="User Profile">
+      </a>
+    </div>
+  </header>
+
+  <!-- Property Details Section -->
+  <section class="property-details">
+    <div class="property-gallery">
+      <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/sold buy.png" alt="Main Property Image" class="main-image" id="main-image">
+      <div class="thumbnail-gallery" id="thumbnail-gallery">
+        <!-- Thumbnails will be loaded here -->
+      </div>
+    </div>
+
+    <div class="property-info">
+      <h1 id="property-title">Loading...</h1>
+      <p class="price" id="property-status"></p>
+      <p class="location" id="property-address"></p>
+      <p class="description" id="property-description"></p>
+      <ul class="key-features" id="property-features">
+        <!-- Features will be loaded here -->
+      </ul>
+      <button class="contact-agent" id="contact-agent-btn">Contact Agent</button>
+    </div>
+  </section>
+
+  <!-- Full-Screen Slideshow -->
+  <div id="slideshow" class="slideshow" style="display:none;">
+    <span class="close-slideshow" onclick="closeSlideshow()">&times;</span>
+    <div class="slideshow-content">
+      <img id="slideshow-image" src="" alt="Slideshow Image">
+      <div class="slideshow-controls">
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-image">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Footer Logo">
+      </div>
+      <div class="footer-section">
+        <h3>Contact Details</h3>
+        <p>D4RENT.IE</p>
+        <p>36 Upper Baggot St, Ballsbridge, D4</p>
+        <p>Phone: 01 442 7303, 087 169 9498</p>
+        <p>Email: <a href="mailto:info@d4rent.ie">info@d4rent.ie</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policy Links</h3>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="psra-number">PSRA No 003328</div>
+  </footer>
+  
+  <script>
+    // Set your backend API base URL
+    const API_BASE_URL = 'http://d4rent-env.eba-nyk56kew.eu-west-1.elasticbeanstalk.com';
+
+    // Get property ID from URL
+    function getPropertyId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // Load property details and update the page
+    async function loadProperty() {
+      const id = getPropertyId();
+      if (!id) return;
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/properties/${id}`);
+        if (!res.ok) throw new Error('Not found');
+        const property = await res.json();
+
+        // Main image
+        document.getElementById('main-image').src = property.image ? '/uploads/' + property.image : 'https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/sold buy.png';
+
+        // Thumbnails
+        const gallery = document.getElementById('thumbnail-gallery');
+        gallery.innerHTML = '';
+        let photos = [];
+        try {
+          photos = typeof property.photos === 'string' ? JSON.parse(property.photos) : property.photos;
+        } catch { photos = []; }
+        if (Array.isArray(photos) && photos.length > 0) {
+          photos.forEach((photo, idx) => {
+            const img = document.createElement('img');
+            img.src = '/uploads/' + photo;
+            img.alt = `Thumbnail ${idx + 1}`;
+            img.onclick = () => document.getElementById('main-image').src = img.src;
+            gallery.appendChild(img);
+          });
+        }
+
+        // Info
+        document.getElementById('property-title').textContent = property.title || '';
+        document.getElementById('property-status').textContent = property.status || '';
+        document.getElementById('property-address').textContent = property.address || '';
+        document.getElementById('property-description').textContent = property.description || '';
+
+        // Features (example: beds, baths, size)
+        const features = [];
+        if (property.beds) features.push(`${property.beds} Bedrooms`);
+        if (property.baths) features.push(`${property.baths} Bathrooms`);
+        if (property.property_size) features.push(`Size: ${property.property_size}`);
+        if (property.agency_name) features.push(`Agency: ${property.agency_name}`);
+        document.getElementById('property-features').innerHTML = features.map(f => `<li>${f}</li>`).join('');
+
+        // Contact Agent button (optional: add mailto or modal)
+        document.getElementById('contact-agent-btn').onclick = function() {
+          alert('Contact functionality coming soon!');
+        };
+      } catch (err) {
+        document.querySelector('.property-details').innerHTML = '<p>Property not found.</p>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProperty);
+
+    // Optional: Slideshow logic (if you want to implement it)
+    let currentSlide = 0;
+    function changeSlide(n) {
+      const gallery = document.getElementById('thumbnail-gallery');
+      const images = gallery.querySelectorAll('img');
+      if (!images.length) return;
+      currentSlide = (currentSlide + n + images.length) % images.length;
+      document.getElementById('main-image').src = images[currentSlide].src;
+    }
+    function closeSlideshow() {
+      document.getElementById('slideshow').style.display = 'none';
+    }
+  </script>
+  <script src="../scripts/main.js"></script>
+</body>
+</html>

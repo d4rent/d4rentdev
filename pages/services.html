@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D4Rent</title>
+  <link rel="stylesheet" href="../css/services.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Logo">
+      </a>
+    </div>
+    <div class="nav-login-container">
+      <nav>
+        <ul>
+           <li><a href="buy.html">Buy</a></li>
+           <li><a href="rent.html">Rent</a></li>
+           <li><a href="commercial.html">Commercial</a></li>
+           <li><a href="services.html">Services</a></li>
+           <li class="dropdown">
+            <a href="agents.html">Agents</a>
+            <ul class="dropdown-menu">
+              <li><a href="agents.html">Real Estate Agents</a></li>
+            </ul>
+          </li>
+          <li><a href="concierge.html">Concierge</a></li>
+          <li><a href="sell.html">Why Us?</a></li>
+          <li><a href="contact-us.html" class="contact-button">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="login-button">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg" alt="User Profile">
+      </a>
+    </div>
+  </header>
+
+  <section class="full-width-slideshow">
+    <div class="slideshow-container">
+        <div class="slide fade">
+            <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/the-sidecar-bar.jpg" alt="Slideshow Image 1">
+        </div>
+        <div class="slide fade">
+            <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/foto_autunno_hero.webp" alt="Slideshow Image 2">
+        </div>
+        <div class="slide fade">
+            <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/architecture-art-arts-1839919-1280x480.jpg" alt="Slideshow Image 3">
+        </div>
+        <div class="slideshow-text">
+            <h2>We Provide a Host of Premium Services.</h2>
+        </div>
+    </div>
+  </section>
+
+  <!-- Page Title -->
+  <section class="page-title">
+    <h1>Services</h1>
+  </section>
+
+  <!-- Search Filter Section -->
+  <section class="search-filter">
+    <form action="#" method="GET" class="filter-form">
+      <div class="filter-group">
+        <label for="price">Price Range:</label>
+        <select id="price" name="price">
+          <option value="">Any</option>
+          <option value="0-100000">€0 - €100,000</option>
+          <option value="100000-200000">€100,000 - €200,000</option>
+          <option value="10000-500000">€20,000 - €500,000</option>
+          <option value="500000-700000">€500,000 - €700,000 </option>
+          <option value="700000-1000000">€700,000 - €1,000,000 </option>
+          <option value="1000000-10000000">€1,000,000 - €10,000,000 </option>
+          <option value="10000000+">€10,000,000+ </option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="beds">Service:</label>
+        <select id="beds" name="beds">
+          <option value="">Any</option>
+          <option value="1">Trades</option>
+          <option value="2">Tech Equipment</option>
+          <option value="3">Furniture</option>
+          <option value="4+">Banking</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="type">Area:</label>
+        <select id="type" name="type">
+          <option value="">Any</option>
+          <option value="house">D4</option>
+          <option value="apartment">D1</option>
+          <option value="villa">D2</option>
+          <option value="commercial">D6</option>
+          <option value="georgian">Co. Dublin</option>
+          <option value="detached">Co. Meath</option>
+        </select>
+      </div>
+      <button type="submit" class="filter-button">Search</button>
+    </form>
+  </section>
+
+  <!-- Service List Section -->
+  <section class="services-list-section">
+    <div class="services-list">
+      <!-- Service cards will be injected here by JS -->
+    </div>
+  </section>
+
+  <!-- Service Discount Modal Popup -->
+  <div id="service-popup" class="service-popup-overlay" style="display:none;">
+    <div class="service-popup-content">
+      <span class="service-popup-close" id="service-popup-close">&times;</span>
+      <h2>Service Discount Survey</h2>
+      <form id="service-discount-form">
+        <div class="popup-step" id="step-1">
+          <label for="popup-service-q">What service are you looking for?</label>
+          <input type="text" id="popup-service-q" name="service_query" required placeholder="e.g. Cleaning, Moving, etc.">
+          <button type="button" class="orange-btn next-step-btn">Next</button>
+        </div>
+        <div class="popup-step" id="step-2" style="display:none;">
+          <label for="popup-other-services">What other services would you like to see on this website?</label>
+          <input type="text" id="popup-other-services" name="other_services" placeholder="e.g. Gardening, Repairs, etc.">
+          <button type="button" class="orange-btn next-step-btn">Next</button>
+        </div>
+        <div class="popup-step" id="step-3" style="display:none;">
+          <label for="popup-notify-slider">Would you like to receive notifications on services like this?</label>
+          <div class="slider-row">
+            <span>No</span>
+            <input type="range" id="popup-notify-slider" name="notify" min="0" max="1" value="0" step="1">
+            <span>Yes</span>
+          </div>
+          <div class="notify-methods" style="display:none;">
+            <label><input type="checkbox" name="notify_email" checked> Email</label>
+            <label><input type="checkbox" name="notify_sms"> SMS</label>
+          </div>
+          <button type="button" class="orange-btn next-step-btn">Next</button>
+        </div>
+        <div class="popup-step" id="step-4" style="display:none;">
+          <label for="popup-email">Your Email:</label>
+          <input type="email" id="popup-email" name="email" required placeholder="Enter your email">
+          <button type="submit" class="orange-btn">Send Me My Code</button>
+        </div>
+      </form>
+      <div id="service-popup-message" style="margin-top:1em;"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-image">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Footer Logo">
+      </div>
+      <div class="footer-section">
+        <h3>Contact Details</h3>
+        <p>D4RENT.IE</p>
+        <p>36 Upper Baggot St, Ballsbridge, D4</p>
+        <p>Phone: 01 442 7303</p>
+        <p>087 169 9498</p>
+        <p>Email: <a href="mailto:info@d4rent.ie">info@d4rent.ie</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policy Links</h3>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="psra-number">PSRA No 003328</div>
+  </footer>
+
+  <script>
+  let selectedServiceId = null;
+  // Only declare API_BASE_URL if not already defined
+  if (typeof API_BASE_URL === 'undefined') {
+    var API_BASE_URL = 'http://d4rent-env.eba-nyk56kew.eu-west-1.elasticbeanstalk.com';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Fetch and render services
+    fetch(`${API_BASE_URL}/api/services`)
+      .then(res => res.json())
+      .then(services => {
+        const container = document.querySelector('.services-list');
+        if (!container) return;
+        if (!services.length) {
+          container.innerHTML = '<p>No services found.</p>';
+          return;
+        }
+        container.innerHTML = services.map(service => `
+          <div class="service-card">
+            <div class="service-image-container">
+              <img src="${service.photo ? '/uploads/' + service.photo : 'https://via.placeholder.com/340x191?text=No+Image'}" alt="${service.title || 'Service Logo'}" class="service-profile-img">
+            </div>
+            <div class="service-info">
+              <div class="service-title">${service.title || 'Untitled'}</div>
+              <div class="service-address">${service.address || ''}</div>
+              <div class="service-email"><a href="mailto:${service.email || ''}">${service.email || ''}</a></div>
+              <div class="service-phone"><a href="tel:${service.phone_number || ''}">${service.phone_number || ''}</a></div>
+              <div class="service-bio">${service.bio || ''}</div>
+            </div>
+            <button type="button" class="discount-btn service-popup-trigger" data-service-id="${service.id}">Discount %</button>
+          </div>
+        `).join('');
+        // Attach popup triggers after rendering
+        container.querySelectorAll('.service-popup-trigger').forEach(btn => {
+          btn.onclick = function(e) {
+            e.preventDefault();
+            selectedServiceId = this.getAttribute('data-service-id');
+            const popup = document.getElementById('service-popup');
+            if (popup) popup.style.display = 'flex';
+            const msg = document.getElementById('service-popup-message');
+            if (msg) {
+              msg.textContent = '';
+              msg.style.color = '';
+            }
+            const form = document.getElementById('service-discount-form');
+            if (form) form.reset();
+            if (typeof showStep === 'function') showStep(0);
+          };
+        });
+      });
+
+    // Multi-step popup logic
+    const steps = [
+      document.getElementById('step-1'),
+      document.getElementById('step-2'),
+      document.getElementById('step-3'),
+      document.getElementById('step-4')
+    ];
+    let currentStep = 0;
+
+    window.showStep = function(idx) {
+      steps.forEach((step, i) => step && (step.style.display = i === idx ? 'flex' : 'none'));
+      currentStep = idx;
+    };
+
+    document.querySelectorAll('.next-step-btn').forEach((btn, idx) => {
+      btn.onclick = function(e) {
+        e.preventDefault();
+        if (idx === 2) { // On step 3, validate at least one notify method if slider is Yes
+          const slider = document.getElementById('popup-notify-slider');
+          if (slider && slider.value === "1") {
+            const emailChecked = document.querySelector('input[name="notify_email"]')?.checked;
+            const smsChecked = document.querySelector('input[name="notify_sms"]')?.checked;
+            if (!emailChecked && !smsChecked) {
+              alert('Please select at least one notification method.');
+              return;
+            }
+          }
+        }
+        showStep(idx + 1);
+      };
+    });
+
+    // Show/hide notification methods based on slider
+    const slider = document.getElementById('popup-notify-slider');
+    if (slider) {
+      slider.addEventListener('input', function() {
+        const notifyMethods = document.querySelector('.notify-methods');
+        if (notifyMethods) {
+          notifyMethods.style.display = this.value === "1" ? "flex" : "none";
+        }
+      });
+    }
+
+    // Popup close
+    const closeBtn = document.getElementById('service-popup-close');
+    if (closeBtn) {
+      closeBtn.onclick = function() {
+        const popup = document.getElementById('service-popup');
+        if (popup) popup.style.display = 'none';
+      };
+    }
+    // Close popup on overlay click
+    const popupOverlay = document.getElementById('service-popup');
+    if (popupOverlay) {
+      popupOverlay.onclick = function(e) {
+        if (e.target === this) this.style.display = 'none';
+      };
+    }
+
+    // Handle discount form submit
+    const discountForm = document.getElementById('service-discount-form');
+    if (discountForm) {
+      discountForm.onsubmit = async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('popup-email').value;
+        const msg = document.getElementById('service-popup-message');
+        const btn = this.querySelector('button[type="submit"]');
+        if (msg) {
+          msg.textContent = 'Sending...';
+          msg.style.color = '';
+        }
+        btn.disabled = true;
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/services/discount`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, service_id: selectedServiceId })
+          });
+          const data = await res.json();
+          if (msg) {
+            if (data.success) {
+              msg.textContent = 'Discount code sent! Check your email.';
+              msg.style.color = '#2e7d32';
+            } else {
+              msg.textContent = data.error || 'Failed to send code.';
+              msg.style.color = '#e53935';
+            }
+          }
+        } catch (error) {
+          if (msg) {
+            msg.textContent = 'Server error. Please try again later.';
+            msg.style.color = '#e53935';
+          }
+        }
+        btn.disabled = false;
+      };
+    }
+  });
+  </script>
+  <script src="../scripts/main.js"></script>
+</body>
+</html>

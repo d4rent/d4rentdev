@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - D4Rent</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <a href="../index.html">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Logo">
+      </a>
+    </div>
+    <div class="nav-login-container">
+      <nav>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li class="dropdown">
+            <a href="agents.html">Agents</a>
+            <ul class="dropdown-menu">
+              <li><a href="agents.html">Real Estate Agents</a></li>
+            </ul>
+          </li>
+          <li><a href="concierge.html">Concierge</a></li>
+          <li><a href="sell.html">Why Us?</a></li>
+          <li><a href="contact-us.html" class="contact-button">Contact Us</a></li>
+        </ul>
+      </nav>
+      <a href="login.html" class="login-button">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/download.jpg" alt="User Profile">
+      </a>
+    </div>
+  </header>
+
+  <!-- Background Content Section -->
+  <div class="background-content">
+    <div class="login-container">
+      <!-- Login Box -->
+      <div class="login-box" id="login-box">
+        <h1>Login</h1>
+        <form id="loginForm">
+          <input type="email" id="email" placeholder="Email" required aria-label="Email">
+          <input type="password" id="password" placeholder="Password" required autocomplete="current-password" aria-label="Password">
+          <button type="submit">Login</button>
+        </form>
+        <a href="#" id="show-register">Don't have an account? Register here</a>
+      </div>
+
+      <!-- Register Box -->
+      <form id="register-form" class="auth-form hidden">
+        <h2>Register</h2>
+        <label for="register-full_name">Full Name:</label>
+        <input type="text" id="register-full_name" name="full_name" required>
+        <label for="register-email">Email:</label>
+        <input type="email" id="register-email" name="email" required>
+        <label for="register-phone_number">Phone Number:</label>
+        <input type="text" id="register-phone_number" name="phone_number" required>
+        <label for="register-password">Password:</label>
+        <input type="password" id="register-password" name="password" required>
+        <label>Role:</label>
+        <div>
+          <label>
+            <input type="radio" name="role" value="User" required> User
+          </label>
+          <label>
+            <input type="radio" name="role" value="Service Agent" required> Service Agent
+          </label>
+          <label>
+            <input type="radio" name="role" value="Real Estate Agent" required> Real Estate Agent
+          </label>
+        </div>
+        <label for="register-license" class="hidden">License Number:</label>
+        <input type="text" id="register-psra" name="psra_number" class="hidden">
+        <button type="submit">Register</button>
+        <p>Already have an account? <a href="#" id="show-login-link">Login here</a>.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-image">
+        <img src="https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/d4rent.ielogobuyrentsell.png" alt="D4Rent Footer Logo">
+      </div>
+      <div class="footer-section">
+        <h3>Contact Details</h3>
+        <p>D4RENT.IE</p>
+        <p>36 Upper Baggot St, Ballsbridge, D4</p>
+        <p>Phone: 01 442 7303</p>
+        <p>087 169 9498</p>
+        <p>Email: <a href="mailto:info@d4rent.ie">info@d4rent.ie</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="sell.html">Sell</a></li>
+          <li><a href="rent.html">Rent</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="landlords.html">Landlords</a></li>
+          <li><a href="commercial.html">Commercial</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policy Links</h3>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+          <li><a href="cookie-policy.html">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="psra-number">PSRA No 003328</div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Only declare API_BASE_URL if not already defined
+    if (typeof API_BASE_URL === 'undefined') {
+      var API_BASE_URL = 'http://d4rent-env.eba-nyk56kew.eu-west-1.elasticbeanstalk.com';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Toggle Register/Login forms
+      const loginBox = document.getElementById('login-box');
+      const registerForm = document.getElementById('register-form');
+      const showRegister = document.getElementById('show-register');
+      const showLoginLink = document.getElementById('show-login-link');
+      if (showRegister && loginBox && registerForm) {
+        showRegister.onclick = function(e) {
+          e.preventDefault();
+          loginBox.classList.add('hidden');
+          registerForm.classList.remove('hidden');
+        };
+      }
+      if (showLoginLink && registerForm && loginBox) {
+        showLoginLink.onclick = function(e) {
+          e.preventDefault();
+          registerForm.classList.add('hidden');
+          loginBox.classList.remove('hidden');
+        };
+      }
+
+      // Show/hide PSRA input for Real Estate Agent
+      const agentRadios = document.querySelectorAll('input[name="role"]');
+      const psraInput = document.getElementById('register-psra');
+      const psraLabel = document.querySelector('label[for="register-license"]');
+      agentRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'Real Estate Agent') {
+            psraInput && psraInput.classList.remove('hidden');
+            psraLabel && psraLabel.classList.remove('hidden');
+          } else {
+            psraInput && psraInput.classList.add('hidden');
+            psraLabel && psraLabel.classList.add('hidden');
+          }
+        });
+      });
+
+      // Login form submission
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.onsubmit = async function(e) {
+          e.preventDefault();
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+          try {
+            const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            if(res.ok && data.access_token) {
+              localStorage.setItem('token', data.access_token);
+              alert('Login successful!');
+              window.location.href = '../pages/profile.html';
+            } else {
+              alert(data.error || 'Login failed');
+            }
+          } catch (err) {
+            alert('Server error. Please try again later.');
+          }
+        };
+      }
+
+      // Register form submission
+      if (registerForm) {
+        registerForm.onsubmit = async function(e) {
+          e.preventDefault();
+          const form = e.target;
+          const data = {
+            full_name: form['full_name'].value,
+            email: form['email'].value,
+            phone_number: form['phone_number'].value,
+            password: form['password'].value,
+            role: form['role'].value,
+            psra_number: form['psra_number'].value
+          };
+          try {
+            const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if(res.ok) {
+              alert('Registration successful! Please log in.');
+              registerForm.classList.add('hidden');
+              loginBox.classList.remove('hidden');
+            } else {
+              alert(result.error || 'Registration failed');
+            }
+          } catch (err) {
+            alert('Server error. Please try again later.');
+          }
+        };
+      }
+    });
+  </script>
+  <script src="../scripts/login.js"></script>
+</body>
+</html>
