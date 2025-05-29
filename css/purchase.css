@@ -1,0 +1,465 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('https://d4rent.ie.s3.eu-west-1.amazonaws.com/assets/IMAGE10.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* This makes the image fill the whole area */
+    min-height: 100vh;      /* Ensures the background covers at least the viewport height */
+}
+
+
+h1, h2, h3 {
+    color: #35424a;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e8491d;
+}
+
+/* Hide elements with .hidden */
+.hidden {
+    display: none !important;
+}
+
+/* Utility Classes */
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-dark {
+    background-color: #ffffff;
+    color: #ffffff;
+}
+
+.padding-large {
+    padding: 80px 20px;
+}
+
+.padding-medium {
+    padding: 20px 30px;
+}
+
+.box-shadow {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.rounded {
+    border-radius: 5px;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #35424a, #1f2a31);
+    color: #ffffff;
+    padding: 20px 40px;
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+}
+
+.nav-login-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
+}
+
+nav a {
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background: #e8491d;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 200px;
+}
+
+.dropdown-menu li {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Contact Button */
+.contact-button {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e8491d;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin: 0;
+    line-height: normal;
+}
+
+.contact-button:hover {
+    background: #d73814;
+}
+
+/* Login Button */
+.login-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.login-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Purchase Page Main Content Styles */
+
+
+.purchase-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+    font-family: inherit;
+    font-weight: 300; /* Thinner font */
+    letter-spacing: 0.02em;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.purchase-container h2,
+.purchase-container h3 {
+    font-weight: 300; /* Thinner headings */
+    margin-bottom: 1.2em;
+    letter-spacing: 0.03em;
+}
+
+.purchase-container .terms,
+.purchase-container select,
+.purchase-container .payment-links,
+.purchase-container .checkbox-label {
+    margin-bottom: 1.5em;
+}
+
+.purchase-container .terms {
+    line-height: 1.7;
+    font-size: 1em;
+}
+
+
+.terms {
+    font-size: 0.95em;
+    background: #f3f3f3;
+    padding: 1em;
+    border-radius: 6px;
+    margin-bottom: 1em;
+}
+
+.payment-links a {
+    display: block;
+    margin: 1em 0;
+    padding: 0.75em;
+    background: #eee;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+}
+
+.purchase-container .checkbox-label {
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.purchase-container .payment-links a {
+    margin: 1.2em 0;
+    padding: 1em;
+    font-size: 1.08em;
+    letter-spacing: 0.02em;
+}
+
+.purchase-container select {
+    padding: 0.7em;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.5em;
+}
+
+.payment-links a.paypal {
+    background: #ffc439;
+    color: #222;
+}
+
+.payment-links a.stripe {
+    background: #635bff;
+    color: #fff;
+}
+
+.payment-links a.bank {
+    background: #e0e0e0;
+    color: #222;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+
+
+
+
+/* Popup Styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .modal-content {
+        padding: 1rem 0.5rem;
+        max-width: 98vw;
+    }
+    .auth-form button[type="submit"] {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+    .close-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+/* Footer Section */
+footer {
+    background-color: #35424a;
+    color: #ffffff;
+    padding: 40px 20px;
+    font-size: 14px;
+    position: relative;
+}
+
+.footer-image {
+    text-align: left;
+    padding: 15px 10px 0px 20px;
+    max-width: 1200px;
+    margin: 0;
+}
+
+.footer-image img {
+    max-height: 120px;
+    width: auto;
+    margin-left: 0;
+}
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #e8491d;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ffffff;
+}
+
+.footer-section ul li a:hover {
+    color: #e8491d;
+}
+
+/* Footer Section - Contact Details */
+.footer-section p {
+    margin: 5px 0;
+    opacity: 1;
+    color: #ffffff;
+}
+
+.footer-section p a {
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.footer-section p a:hover {
+    color: #e8491d;
+}
+/* PSRA Number */
+.footer-psra-number {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 12px;
+    color: #d3d3d3;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        position: relative;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    nav ul li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .login-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .login-button img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,836 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1, h2, h3 {
+    color: #35424a;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e8491d;
+}
+
+/* Utility Classes */
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-dark {
+    background-color: #35424a;
+    color: #ffffff;
+}
+
+.padding-large {
+    padding: 80px 20px;
+}
+
+.padding-medium {
+    padding: 20px 30px;
+}
+
+.box-shadow {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.rounded {
+    border-radius: 5px;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #35424a, #1f2a31);
+    color: #ffffff;
+    padding: 20px 40px;
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+}
+
+.nav-login-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
+}
+
+nav a {
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 3px;
+    transition: background 0.3s, color 0.3s;
+}
+nav a:hover {
+    background: #e8491d;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the parent menu item */
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 200px;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
+/* Show dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Contact Button */
+.contact-button {
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e8491d;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.contact-button:hover {
+    background: #d73814;
+}
+
+/* Login Button */
+.login-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.login-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden; /* Hide non-active slides */
+    height: 500px; /* Set a fixed height for the slideshow */
+    background-color: #f4f4f4; /* Optional: Add a fallback background color */
+}
+  
+  .slide img {
+    width: 100%; /* Make the image take up the full width of the container */
+    height: 100%; /* Make the image take up the full height of the container */
+    object-fit: cover; /* Ensures the image fills the container without distortion */
+    display: block; /* Removes any inline spacing issues */
+}
+  .dots-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .dot.active {
+    background-color: #717171;
+  }
+/* Search Bar Overlay */
+.search-bar-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    background: #e8491d;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background: #d73814;
+}
+
+/* Local Experts Section */
+.local-global {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    padding: 10px 250px;
+    gap: 30px;
+}
+
+.local-global h2 {
+    flex: 1;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    color: #35424a;
+    margin-top: 23px;
+}
+
+.local-global p {
+    flex: 1;
+    font-size: 20px;
+    line-height: 1.9;
+    letter-spacing: 0.7px;
+    color: #313131;
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden; /* Hide non-active slides */
+    height: 50vw; /* Maintain aspect ratio based on viewport width */
+    background-color: #f4f4f4; /* Optional: Add a fallback background color */
+}
+
+/* Agent Profiles Section */
+.agent-profiles {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .agent-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .agent-card {
+    text-align: center;
+    width: 150px;
+  }
+  
+  .agent-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fits within the circle */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for depth */
+    transition: transform 0.3s ease; /* Adds a hover effect */
+  }
+  
+  .agent-photo:hover {
+    transform: scale(1.1); /* Slightly enlarges the photo on hover */
+  }
+  
+  .agent-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .agent-card p {
+    font-size: 14px;
+    color: #777;
+  }
+
+/* Individual Slides */
+.slide {
+    display: none; /* Hide all slides by default */
+    width: 100%; /* Ensure slides take up full width */
+}
+
+/* Active Slide */
+.slide.active {
+    display: block; /* Show only the active slide */
+}
+
+.slideshow-container img {
+    width: 100%; /* Ensure the image scales to fit the container */
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Crop the image to fit the container */
+}
+
+/* Slideshow Images */
+.slide img {
+    width: 100%;
+    height: 100%; /* Ensure images fill the container */
+    object-fit: block; /* Maintain aspect ratio and cover the container */
+    display: block; /* Remove any inline spacing issues */
+}
+  /* Slideshow Dots */
+  .dots-container {
+    display: none; /* Hides the dots */
+  }
+  
+  .dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .dot.active {
+    background-color: #717171;
+  }
+/* Meet Your Experts Section */
+.meet-your-experts {
+    background: linear-gradient(to right, #35424a, #1f2a31); /* Gradient background */
+    padding: 100px 20px;
+    text-align: center;
+    padding: 100px 20px; /* Reduce padding to move the content up */
+}
+
+.meet-your-experts h2 {
+    font-size: 4rem;
+    font-weight: lighter;
+    margin-bottom: 100px;
+    color: #ffffff;
+}
+
+.agent-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .agent-card {
+    text-align: center;
+    width: 150px;
+  }
+
+  .agent-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fits within the circle */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for depth */
+    transition: transform 0.3s ease; /* Adds a hover effect */
+  }
+
+  .agent-photo:hover {
+    transform: scale(1.1); /* Slightly enlarges the photo on hover */
+  }
+  
+  .agent-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: #ffffff; /* Ensure text is visible on the background */
+  }
+  
+  .agent-card p {
+    font-size: 14px;
+    color: #dddddd; /* Use a lighter shade for the job title */
+  }
+  
+
+.experts-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.expert-card {
+    background: none; /* Remove the background color */
+    border: none; /* Remove the border */
+    box-shadow: none; /* Remove the shadow */
+    transform: scale(1.5); /* Scale the card to 30% larger */
+    transition: transform 0.3s ease; /* Smooth scaling transition */
+  }
+
+.expert-card:hover {
+    transform: scale(1.35); /* Slightly enlarge on hover for a better effect */
+    box-shadow: none
+    
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #e8491d;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Specific to expert cards */
+.expert-card a {
+    text-decoration: none; /* Remove underline for expert card links */
+}
+
+.expert-card a:hover {
+    text-decoration: none !important; /* Ensure no underline on hover */
+}
+
+.expert-card h3 {
+    text-decoration: none; /* Remove underline by default */
+    font-size: 1.5rem;
+    margin: 10px 0;
+    color: #ffffff;
+}
+
+.job-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.expert-card {
+    background: none; /* Remove the background color */
+    border: none; /* Remove the border */
+    box-shadow: none; /* Remove the shadow */
+  }
+
+.expert-card p {
+    font-size: 1rem;
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+.expert-card a {
+    color: #e8491d;
+    text-decoration: none;
+}
+
+.expert-card a:hover {
+    text-decoration: underline;
+}
+
+/* Remove underline for all links */
+a {
+    text-decoration: none; /* Remove underline by default */
+    color: inherit; /* Inherit text color */
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+    color: #e8491d; /* Optional: Change color on hover */
+  }
+
+
+
+/* Footer Section */
+footer {
+    background-color: #35424a;
+    color: #ffffff;
+    padding: 40px 20px;
+    font-size: 14px;
+    position: relative;
+}
+
+.footer-image {
+    text-align: left;
+    padding: 15px 10px 0px 20px; /* Reduced left padding from 40px to 20px */
+    max-width: 1200px;
+    margin: 0; /* Remove auto margin to align completely to the left */
+}
+
+.footer-image img {
+    max-height: 120px;
+    width: auto;
+    margin-left: 0; /* Ensure no left margin on the image */
+}
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #e8491d;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #ffffff;
+}
+
+.footer-section ul li a:hover {
+    color: #e8491d;
+}
+
+.footer-section p {
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+.footer-section p a {
+    color: #ffffff;
+}
+
+.footer-section p a:hover {
+    color: #e8491d;
+}
+
+/* PSRA Number */
+.footer-psra-number {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 12px;
+    color: #d3d3d3;
+    font-style: italic;
+}
+
+@media (max-width: 1000px) {
+    header {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Center-align the content */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .logo-container {
+        margin-bottom: 10px; /* Add spacing below the logo */
+    }
+
+    .nav-login-container {
+        flex-direction: column; /* Stack navigation and login button vertically */
+        gap: 10px; /* Add spacing between items */
+    }
+
+    nav ul {
+        flex-direction: row; /* Keep the navigation links horizontal */
+        justify-content: center; /* Center the navigation links */
+        gap: 5px; /* Reduce spacing between links */
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        margin: 0 5px; /* Reduce margin between links */
+    }
+
+    nav a {
+        font-size: 14px; /* Reduce font size for smaller screens */
+        padding: 5px 10px; /* Reduce padding for smaller links */
+    }
+
+    .login-button {
+        position: absolute; /* Keep it positioned relative to the header */
+        top: 10px; /* Adjust the vertical position */
+        right: 10px; /* Align it to the right */
+        width: 40px; /* Adjust size for consistency */
+        height: 40px;
+        border-radius: 50%; /* Keep it circular */
+        overflow: hidden;
+        cursor: pointer;
+    }
+    
+    .login-button img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the image fits properly */
+        border-radius: 50%; /* Keep the image circular */
+    }
+
+    .search-bar-container {
+        top: 180px; /* Move the search bar further down */
+    }
+
+    .slideshow-container {
+        height: 60vw; /* Increase height for smaller screens */
+    }
+
+    .local-global h2 {
+        font-size: 1.8rem; /* Slightly smaller heading */
+    }
+
+    .local-global p {
+        font-size: 0.9rem; /* Slightly smaller paragraph text */
+    }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        position: relative; /* For positioning the login button */
+    }
+
+    .footer-image {
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-image img {
+        max-height: 120px;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center; /* Center the navigation menu */
+        padding: 0;
+        margin: 10px 0; /* Add spacing around the nav */
+    }
+
+    nav ul li {
+        display: inline-block; /* Keep nav items inline */
+        margin: 0 10px; /* Add spacing between items */
+    }
+
+    .login-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 40px; /* Adjust size for mobile */
+        height: 40px;
+    }
+
+    .login-button img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%; /* Make it circular */
+    }
+
+    .slideshow-container {
+        height: 70vw; /* Further increase height for smaller screens */
+    }
+
+    .slide img {
+        transform: scale(1.4); /* Increase image size by 40% */
+        object-fit: cover; /* Ensure the image still covers the container */
+        margin-top: 5px; /* Add margin to bring it down */
+    }
+
+    .search-bar-container {
+        position: absolute; /* Position it inside the slideshow */
+        top: 420px; /* Adjust vertical position */
+        left: 50%;
+        transform: translateX(-50%); /* Center it horizontally */
+        width: 80%; /* Reduce the width to make it smaller */
+        max-width: 600px; /* Limit the maximum width */
+        background: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
+        padding: 10px; /* Reduce padding to make it more compact */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+        border-radius: 5px; /* Rounded corners */
+    }
+    
+    .search-input {
+        width: calc(100% - 100px); /* Adjust width to leave space for the button */
+        padding: 8px; /* Reduce padding for a smaller input */
+        font-size: 14px; /* Reduce font size */
+        border: 1px solid #ddd;
+        border-radius: 5px 0 0 5px; /* Rounded corners on the left */
+        outline: none;
+    }
+    
+    .search-button {
+        width: 80px; /* Reduce the button width */
+        padding: 8px; /* Reduce padding for a smaller button */
+        font-size: 14px; /* Reduce font size */
+        background: #e8491d;
+        color: #ffffff;
+        border: none;
+        border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .search-button:hover {
+        background: #d73814;
+    }
+
+       /* Local Experts Section */
+       .local-global {
+        padding: 10px; /* Reduce padding */
+        text-align: center; /* Center-align text for better readability */
+    }
+
+    .local-global h2 {
+        font-size: 1.5rem; /* Smaller heading for mobile */
+    }
+
+    .local-global p {
+        font-size: 0.rem; /* Smaller paragraph text for mobile */
+    }
+
+    /* Meet Your Experts Section */
+    .meet-your-experts {
+        padding: 50px 10px; /* Reduce padding */
+    }
+
+    .meet-your-experts h2 {
+        font-size: 2rem; /* Reduce font size */
+        margin-bottom: 50px; /* Reduce bottom margin */
+    }
+
+    .experts-container {
+        gap: 10px; /* Reduce gap between expert cards */
+    }
+
+    .expert-card {
+        transform: scale(1); /* Reset scaling for smaller screens */
+    }
+
+    .profile-picture {
+        width: 80px; /* Reduce profile picture size */
+        height: 80px;
+    }
+
+    .expert-card h3 {
+        font-size: 1.2rem; /* Reduce font size */
+    }
+
+    .job-title {
+        font-size: 1rem; /* Reduce font size */
+    }
+
+    .expert-card p {
+        font-size: 0.9rem; /* Reduce font size */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+}
